@@ -102,7 +102,20 @@ body {
 
 
 /* Footer */
+#id_login, #id_password,
+#id_email, #id_username,
+#id_password1, #id_password2 {  
+  
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    background: none;
+    width: 100%;
+}
 
+::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
+}
 
 .contact-link {
   color: white;

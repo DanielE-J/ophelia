@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import os
 if os.path.isfile('env.py'):
     import env
 
@@ -109,10 +110,15 @@ AUTHENTICATION_BACKENDS = (
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}
 
+DATABASES = {
+    'default': dj_database_url.parse(
+        os.environ.get(
+            'DATABASE_URL',
+            'postgresql://neondb_owner:npg_yqKnlex27vYz@ep-tight-rice-a20s0upu.eu-central-1.aws.neon.tech/swan_rabid_rigid_679423'
+        )
+    )
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
