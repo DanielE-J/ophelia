@@ -1,4 +1,9 @@
-
+/* Reset margins and paddings for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 /* CSS varieables */
 :root {
@@ -30,6 +35,8 @@ body {
 
 
 .logo {
+  padding-left: 0;          
+  margin-left: 0;  
   padding-left: 10px;
   max-width: 90px;
   background: transparent;
@@ -96,6 +103,8 @@ body {
 
 
 /* Footer */
+
+
 .contact-link {
   color: white;
   text-decoration: none;
