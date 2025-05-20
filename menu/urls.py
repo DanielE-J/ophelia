@@ -7,4 +7,5 @@ urlpatterns = [
     path('add/', views.add_menu, name='add_menu'),
     path('update/<int:menu_id>/', views.update_menu, name='update_menu'),
     path('delete/<int:menu_id>/', views.delete_menu, name='delete_menu'),
+    path('menu/',views.menu,name='menu'),
 ]
