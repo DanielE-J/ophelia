@@ -1,8 +1,5 @@
 {% load static %}
 {% url "homepage" as home_url %}
-{% url 'account_login' as login_url %}
-{% url 'account_signup' as signup_url %}
-{% url 'account_logout' as logout_url %}
 
 
 <!DOCTYPE html>
@@ -37,51 +34,58 @@
       crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  
+  <body class="d-flex flex-column h-100 main-bg">
 
-    <body class="d-flex flex-column h-100 main-bg">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href=""
-          ><img
-            class="logo"
-            src="{% static 'images/logo.jpg' %}"
-            alt="ophelia-logo"></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"
-            ><i class="fa-solid fa-bars"></i
-          ></span>
-        </button>
-        <div class="navbar-nav ms-auto py-3 px-5">
-          <ul class="navbar-nav ms-auto py-3 px-5">
-            <li class="nav-item">
-              <a class="nav-link" href="">Menu</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="" href="">home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="" href="">Bookings</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img class="logo" src="{% static 'images/logo.jpg' %}" alt="ophelia-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+        <i class="fa-solid fa-bars"></i>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto py-3 px-5">
+         <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == menu_url %}active{% endif %}" aria-current="page" href="">Menu</a>
+        </li>
+         <li class="nav-item">
+           <a class="nav-link" href="">About</a>
+         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Bookings</a>
+        </li>
+        {% if user.is_authenticated %}
+       <li class="nav-item">
+           <a class="nav-link" href="{% url 'my_bookings' %}">My Bookings</a>
+         </li>
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+          </li>
+        {% else %}
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+         </li>
+            {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
 
     {% block content %}
       <!-- Content Goes here -->
       {% endblock %}
+
 
     <!-- Footer -->
     <footer id="footer" class="mt-auto">

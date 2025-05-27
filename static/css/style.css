@@ -1,0 +1,218 @@
+/* Reset margins and paddings for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS varieables */
+:root {
+  --primary-font: 'Alfa Slab One', serif;
+  --secondary-font: 'Chivo', serif;
+  --nav-color: transparent;
+  --text-color: white;
+  --background-color: rgb(0, 0, 0);
+  --text-hover-color: #0e4b20;
+  --button-bg-color: transparent;
+  --button-text-color: #fff;
+}
+
+
+/* Global styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+
+/* Nevigation bar */
+.banner-img {
+  width: 100%;        
+  height: auto;       
+  display: block;    
+  border-radius: 8px; 
+}
+
+.logo {
+  padding-left: 0;          
+  margin-left: 0;  
+  padding-left: 10px;
+  max-width: 90px;
+  background: transparent;
+  
+}
+
+.navbar {
+  background-color: var(--nav-color);
+  color: var(--text-color);
+  font-family: var(--primary-font);
+}
+
+.nav-item {
+  padding: 0 15px 0 15px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  transition: 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  text-decoration: underline;
+}  
+
+.navbar-toggler-icon {
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.btn-order {
+  border: 1px solid var(--button-bg-color);
+  padding: 10px 20px 10px 20px;
+  font-size: 1.2rem;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+.btn-order:hover {
+  background-color: var(--button-hover-color);
+  border: 1px solid var(--button-hover-color);
+  color: var(--button-text-color);
+}
+
+
+
+/* Block Content */
+.main-text {
+  font-family: var(--primary-font);
+}
+
+.sub-text {
+  font-family: var(--secondary-font);
+}
+
+.main-text, .sub-text {
+  color: var(--text-color);
+}
+
+
+/* Footer */
+#id_login, #id_password,
+#id_email, #id_username,
+#id_password1, #id_password2 {  
+  
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    background: none;
+    width: 100%;
+}
+
+::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.contact-link {
+  color: white;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  color: #ccc;
+}
+
+#footer {
+  background-color: var(--nav-color);
+}
+
+.footer-title {
+  font-size: 0.9rem;
+}
+
+.footer-body {
+  font-size: 1rem;
+}
+
+.social-links a {
+  color: var(--text-color);
+  font-size: 1.8rem;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: var(--text-hover-color);
+}
+
+about-text {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.about-text {
+  margin-top: 186px;
+  font-size: 0.6rem;
+}
+
+
+.about-text {
+  font-size: 0.8rem;
+    }
+
+
+/* For screen size (>=1200px) */
+@media screen and (min-width: 1200px) {
+    .about-text {
+        font-size: 1rem;
+    }
+}
+/* Media Queries */
+
+
+/* For screen size (>768px) */
+@media screen and (min-width: 768px) {
+  .social {
+     text-align: center;
+  }
+}
+
+/* For screen size (<=768px) */
+@media screen and (max-width: 768px) {
+  .contact-info, .social {
+      text-align: center;
+  }
+}
+
+
+@media screen and (max-width: 1318px) {
+  .nav-link {
+      font-size: 0.9rem;
+  }
+  .nav-item {
+      padding: 0px 5px;
+  }
+
+  .btn-order {
+      font-size: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 1319px) {
+  .footer-title {
+      font-size: 1.3rem;
+  }
+  
+  .footer-body {
+      font-size: 1.2rem;
+  }
+
+  .social-links a {
+      font-size: 2rem;
+  }
+}

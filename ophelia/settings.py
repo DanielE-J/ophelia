@@ -80,7 +80,7 @@ ROOT_URLCONF = 'ophelia.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,7 +114,12 @@ AUTHENTICATION_BACKENDS = (
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.parse(
+        os.environ.get(
+            'DATABASE_URL',
+            'postgresql://neondb_owner:npg_yqKnlex27vYz@ep-tight-rice-a20s0upu.eu-central-1.aws.neon.tech/swan_rabid_rigid_679423'
+        )
+    )
 }
 
 # Password validation
