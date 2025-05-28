@@ -29,9 +29,10 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = ['ophelia-resturant.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ophelia-resturant-856f44a031c1.herokuapp.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'home',
+    'menu',
 ]
 
 SITE_ID = 1
@@ -122,6 +124,10 @@ DATABASES = {
     )
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeinstitute-ide.net/",
+    "https://*.herokuapp.com"
+]
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -163,6 +169,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
