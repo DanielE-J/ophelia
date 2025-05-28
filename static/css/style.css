@@ -117,6 +117,29 @@ body {
     opacity: 0.5;
 }
 
+/* Target the card */
+.card {
+    background-color: #000 !important;  /* Force black background */
+    color: #fff !important;             /* Force white text */
+    border: none;
+}
+
+/* Make h2 text white */
+.card h2 {
+    color: #fff !important;
+}
+
+/* Make links white and remove underline */
+.card a {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+/* Optional: subtle hover effect */
+.card a:hover {
+    color: #ccc !important;
+}
+
 .contact-link {
   color: white;
   text-decoration: none;
@@ -138,6 +161,14 @@ body {
   font-size: 1rem;
 }
 
+header {
+    margin-bottom: 150px;
+}
+
+.card {
+    background-color: rgb(0, 0, 0, 0.2);
+    padding: 20px;
+}
 .social-links a {
   color: var(--text-color);
   font-size: 1.8rem;
