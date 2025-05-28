@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Ophelia| Menu{% endblock title %}
+{% block content %}
+
+<div class="section" style="margin-top: 50px; padding-top: 40px; text-align: left;">
+    <div class="col-md-8 mx-auto">
+        <div class="row">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="dinner position-relative"> 
+                    <div class="item active">
+                        <img src="{% static 'images/dining.jpg' %}" class="d-block w-100 rounded"
+                             alt="A restaurant setting photograph">
+
+                        <!-- Text overlay -->
+                        <div class="text-overlay position-absolute top-50 start-50 translate-middle text-center text-white">
+                            <h2>The Menu</h2>
+                            <p>
+                                Our fixed menu is 4 800 SEK per guest plus your choice of beverages.
+                                It is the same menu for lunch and dinner.
+                                Beverage pairing, alcoholic and non-alcoholic is available.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="margin-top: 50px; padding-top: 40px; text-align: left;">
+    <div class="col-md-8 mx-auto">
+        <div class="row">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="dinner position-relative"> 
+                    <div class="item active">
+                        <img src="{% static 'images/privatedining.jpg' %}" class="d-block w-100 rounded"
+                             alt="A restaurant setting photograph">
+
+                        <!-- Text overlay -->
+                        <div class="text-overlay position-absolute top-50 start-50 translate-middle text-center text-white">
+                            <h2>Private Dining</h2>
+                            <p>
+                                
+Welcome to an exclusive private dining experience in the
+Frantzén Group Test Kitchen.
+
+The private area accommodates parties of 8–14 guests,
+offering a tasting menu at the price of 5500 SEK
+plus your choice of beverage.
+Both alcoholic and non-alcoholic pairing is available.
+For availability and reservation please email
+Ophelia@resturant.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section" style="margin-top: 50px; padding-top: 40px; text-align: left;">
+    <div class="col-md-8 mx-auto">
+        <div class="row">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="dinner position-relative"> 
+                    <div class="item active">
+                        <img src="{% static 'images/reservation.jpg' %}" class="d-block w-100 rounded"
+                             alt="A restaurant setting photograph">
+
+                        <!-- Text overlay -->
+                        <div class="text-overlay position-absolute top-50 start-50 translate-middle text-center text-white">
+                            <h2>The Menu</h2>
+                            <p>
+                                Make a reservation
+We are open for lunch and dinner Tuesday–Friday.
+
+We will be closed for summer holidays from June 15th and will reopen on July 30th.
+
+Tables for the upcoming month will open for reservation on the 1st of each month at 10 AM local time.
+
+For parties of 5-8 guests, please contact reservation@restaurantophelia.com
+
+Please note that we are unable to accommodate vegan menus or menus free from milk protein, egg and citrus.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}    
