@@ -1,69 +1,69 @@
 {% extends "base.html" %}
-
 {% load static %}
-{% block title %}Ophelia| Drinka Menu{% endblock title %}
-{% block content %}
 
+{% block title %}Ophelia | Drinks Menu{% endblock title %}
+
+{% block content %}
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-sm-8 mt-5 mb-5">
             <h1 class="text-center">Drinks Menu</h1>
         </div>
     </div>
-   <div class="row justify-content-center">
+
     <!-- Wines Drink Items -->
-    <div class="col-sm-8">
-        <hr><h2>Drinks</h2><hr>
-
-        <!-- Image -->
-        <div class="text-center mb-4">
-            <img src="{% static 'images/wines.jpg' %}" alt="Wines" class="img-fluid rounded float-start me-3 mb-3">
-            <img src="{% static 'images/beer.jpg' %}" alt="Beer" class="img-fluid rounded float-start me-3 mb-3">
-
-        </div>
-
-        {% for drink in drink_list %}
-        {% if drink.drink_type == 0 and drink.available == 1 %}
-        <br><h3>{{ drink.drink_name }}</h3>
-        {{ drink.description | safe }} €{{ drink.price }}
-        <br>
-        {% endif %}
-        {% endfor %}
-    </div>
-</div>
-
     <div class="row justify-content-center">
-        <!-- Cocktails Drink Items-->
+        <div class="col-sm-8">
+            <hr><h2>Drinks</h2><hr>
+            <div class="text-center mb-4">
+                <img src="{% static 'images/wines.jpg' %}" alt="Wines" class="img-fluid rounded float-start me-3 mb-3">
+                <img src="{% static 'images/beer.jpg' %}" alt="Beer" class="img-fluid rounded float-start me-3 mb-3">
+            </div>
+
+            {% for drink in drink_list %}
+                {% if drink.drink_type == 0 and drink.available == 1 %}
+                    <br><h3>{{ drink.drink_name }}</h3>
+                    {{ drink.description | safe }} €{{ drink.price }}
+                    <br>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Cocktails Drink Items -->
+    <div class="row justify-content-center">
         <div class="col-sm-8">
             <hr><h2>Cocktails</h2><hr>
-             <div class="text-center mb-4">
-            <img src="{% static 'images/cocktail.jpg' %}" alt="Cocktail" class="img-fluid rounded float-start me-3 mb-3">
-        </div>
-            {% for drink in drink_list %}
-            {% if drink.drink_type == 2 and drink.available == 1 %}
-            <br><h3>{{ drink.drink_name }}</h3>
-            {{ drink.description | safe }} €{{ drink.price }}
-            <br>
+            <div class="text-center mb-4">
+                <img src="{% static 'images/cocktail.jpg' %}" alt="Cocktail" class="img-fluid rounded float-start">
+            </div>
 
-      <div class="row justify-content-center">
-        <!-- Cocktails Drink Items-->
+            {% for drink in drink_list %}
+                {% if drink.drink_type == 2 and drink.available == 1 %}
+                    <br><h3>{{ drink.drink_name }}</h3>
+                    {{ drink.description | safe }} €{{ drink.price }}
+                    <br>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Spirits Drink Items -->
+    <div class="row justify-content-center">
         <div class="col-sm-8">
             <hr><h2>Spirits</h2><hr>
-             <div class="text-center mb-4">
-            <img src="{% static 'images/spirits.jpg' %}" alt="Spirits" class="img-fluid rounded float-start me-3 mb-3">
-        </div>
+            <div class="text-center mb-4">
+                <img src="{% static 'images/spirits.jpg' %}" alt="Spirits" class="img-fluid rounded float-start">
+            </div>
+
             {% for drink in drink_list %}
-            {% if drink.drink_type == 2 and drink.available == 1 %}
-            <br><h3>{{ drink.drink_name }}</h3>
-            {{ drink.description | safe }} €{{ drink.price }}
-            <br>        
-
-            {% endif %}
+                {% if drink.drink_type == 1 and drink.available == 1 %}
+                    <br><h3>{{ drink.drink_name }}</h3>
+                    {{ drink.description | safe }} €{{ drink.price }}
+                    <br>
+                {% endif %}
             {% endfor %}
-
         </div>
     </div>
 </div>
-
-
-{%endblock%}
+{% endblock %}
