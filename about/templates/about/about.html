@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Ophelia | About us{% endblock title %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 text-center mt-4">
+            <img src="{% static 'images\about.jpg' %}" alt="about us" class="col-12 col-md-6 about-img">
+        </div>
+        <div class="col-12 col-md-6 mt-4">
+            <article>
+                <h2 class="main-text text-center mb-4">{{ about.title }}</h2>
+                <p class="sub-text about-text">{{ about.content | safe }}</p>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock content %}
