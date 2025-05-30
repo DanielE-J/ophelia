@@ -85,6 +85,46 @@ body {
   color: var(--button-text-color);
 }
 
+.about-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: black;
+  color: white;
+  flex-wrap: wrap; /* Makes it responsive */
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  height: auto;
+}
+
+.about-image {
+  flex: 1 1 40%;
+}
+
+.about-content {
+  flex: 1 1 50%;
+  max-width: 600px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image,
+  .about-content {
+    flex: 1 1 100%;
+  }
+}
 
 
 /* Block Content */

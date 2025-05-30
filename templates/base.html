@@ -1,5 +1,6 @@
 {% load static %}
 {% url "home" as home_url %}
+{% url "about" as about_url %}
 {% url "all_menus" as menu_url %}
 {% url "account_login" as login_url %} 
 {% url "account_logout" as logout_url %}
@@ -65,7 +66,7 @@
     <a class="nav-link {% if request.resolver_match.url_name == 'all_menus' %}active{% endif %}" href="{{ menu_url }}">Menu</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">About</a>
+  <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Bookings</a>
