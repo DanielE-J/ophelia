@@ -15,10 +15,8 @@ from .models import Booking
 from .forms import BookingForm
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
 # This will get the user information if they are logged in
-def bookings_view(request):
-    # your logic here
-    return render(request, 'your_template.html')
 
 def get_user_instance(request):
     """

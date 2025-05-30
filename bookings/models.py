@@ -96,8 +96,6 @@ class Booking(models.Model):
         (2, "2 Guests"),
         (3, "3 Guests"),
         (4, "4 Guests"),
-        (5, "5 Guests"),
-        (6, "6 Guests"),
         )
     guest_count = models.IntegerField(choices=seats, default=2)
 

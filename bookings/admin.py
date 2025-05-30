@@ -1,6 +1,8 @@
-from rangefilter.filters import DateRangeFilter
-from django_summernote.admin import SummernoteModelAdmin
+# Imports
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 3rd party:
 from django.contrib import admin
+from rangefilter.filters import DateRangeFilter
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Internal:
 from .models import Table, Booking
