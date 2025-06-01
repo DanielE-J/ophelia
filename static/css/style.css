@@ -108,6 +108,12 @@ body {
   flex: 1 1 40%;
 }
 
+.btn-white {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc; /* Optional: visible border */
+}
+
 .about-content {
   flex: 1 1 50%;
   max-width: 600px;

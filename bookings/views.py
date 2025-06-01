@@ -159,3 +159,9 @@ def cancel_booking(request, pk):
 
     return render(
         request, 'bookings/cancel_booking.html', {'booking': booking})
+    
+    
+def my_view(request):
+    return render(request, "your_template.html", {
+        "signup_url": reverse("account_signup")
+    })    
