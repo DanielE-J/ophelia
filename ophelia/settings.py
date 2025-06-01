@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django_summernote',
     'crispy_forms',
+    "crispy_bootstrap4",
     'crispy_bootstrap5',
     'phonenumber_field',
     'rangefilter',
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
     'home',
     'menu',
     'about',
+    
 ]
 
 SITE_ID = 1
@@ -101,6 +103,7 @@ TEMPLATES = [
     },
 ]
 
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 WSGI_APPLICATION = 'ophelia.wsgi.application'
 
 AUTHENTICATION_BACKENDS = (
