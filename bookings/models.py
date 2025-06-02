@@ -1,107 +1,83 @@
-# Imports
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# 3rd party:
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from datetime import time
 
-# Restaurant first sitting at noon and last sitting 11pm
-time_slots = (
-    ('12:00', '12:00'),
-    ('13:00', '13:00'),
-    ('14:00', '14:00'),
-    ('15:00', '15:00'),
-    ('16:00', '16:00'),
-    ('17:00', '17:00'),
-    ('18:00', '18:00'),
-    ('19:00', '19:00'),
-    ('20:00', '20:00'),
-    ('21:00', '21:00'),
-    ('22:00', '22:00'),
-    ('23:00', '23:00'),
-)
+time = models.TimeField(default=time(12, 0))
+
+# Create your models here.
 
 
-# Status options inspired by the JustEat status' when ordering
-status_options = (
-    ('Awaiting confirmation', 'Awaiting Confirmation'),
-    ('Booking Confirmed', 'Booking Confirmed'),
-    ('Booking Rejected', 'Booking Rejected'),
-    ('Booking Expired', 'Booking Expired'),
-)
+class MenuItem(models.Model):
+    """
+    A model representing an item on a menu.
 
+    Attributes:
+        name (str): The name of the menu item.
+        description (str): A detailed description of the menu item.
+        price (Decimal): The price of the item, with a maximum of
+        6 digits and 2 decimal places.
+        category (str): The category of the menu item
+        (e.g., Appetizer, Main Course, Dessert).
+    """
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    category = models.CharField(max_length=50)
 
-# The table model for the database
+    def __str__(self):
+        """
+        Returns the string representation of the MenuItem, which is the
+        name of the item.
+        """
+        return self.name
 
 
 class Table(models.Model):
     """
-    a class for the Table model
-    """
-    table_id = models.AutoField(primary_key=True)
-    table_name = models.CharField(
-        max_length=50,
-        default='New Table',
-        unique=True
-        )
-    max_seats = models.PositiveIntegerField(default=2)
+    A model representing a table in the restaurant.
 
-    class Meta:
-        ordering = ['-max_seats']
+    Attributes:
+        size (int): The number of people the table can accommodate.
+    """
+    size = models.IntegerField()
 
     def __str__(self):
-        return self.table_name
-
-
-# The booking model for the database
+        """
+        Returns the string representation of the Table, showing the
+        number of people it can accommodate.
+        """
+        return f"Table for {self.size} people"
 
 
 class Booking(models.Model):
     """
-    a class for the Booking model
+    A model representing a booking made by a
+    user for a specific table at a given date and time.
+
+    Attributes:
+        user (User): The user who made the booking.
+        table (Table): The table that is booked.
+        date (date): The date of the booking.
+        time (time): The time of the booking.
+        number_of_guests (int): The number of guests
+        for the booking, with a default of 1.
+
+    Meta:
+        unique_together: Ensures that a table cannot be
+        double-booked for the same date and time.
     """
-    booking_id = models.AutoField(primary_key=True)
-    created_date = models.DateTimeField(auto_now_add=True)
-    requested_date = models.DateField()
-    requested_time = models.CharField(
-        max_length=25,
-        choices=time_slots,
-        default='17:00'
-        )
-    table = models.ForeignKey(
-        Table,
-        on_delete=models.CASCADE,
-        related_name="table_reserved",
-        null=True
-        )
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user", null=True)
-    name = models.CharField(
-        max_length=50,
-        null=True
-        )
-    email = models.EmailField(
-        max_length=254,
-        default=""
-        )
-    phone = PhoneNumberField(null=True)
-    status = models.CharField(
-        max_length=25,
-        choices=status_options,
-        default='awaiting confirmation'
-        )
-    seats = (
-        (1, "1 Guest"),
-        (2, "2 Guests"),
-        (3, "3 Guests"),
-        (4, "4 Guests"),
-        )
-    guest_count = models.IntegerField(choices=seats, default=2)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    table = models.ForeignKey(Table, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+    number_of_guests = models.PositiveIntegerField(default=1)
 
     class Meta:
-        ordering = ['-requested_time']
-        unique_together = ('requested_date', 'requested_time', 'table')
+        unique_together = ('table', 'date', 'time')
 
     def __str__(self):
-        return self.status
+        """
+        Returns the string representation
+        of the Booking, showing the table, date, and time.
+        """
+        return f"Booking for {self.table} on {self.date} at {self.time}"
