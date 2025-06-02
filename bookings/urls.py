@@ -1,35 +1,18 @@
+# Imports
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 3rd party:
 from django.urls import path
-from . import views
+# Internal:
+from bookings import views
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# Urls for all the pages in the bookings app
 urlpatterns = [
-    path(
-        'make_booking/',
-        views.make_booking,
-        name='make_booking'
-    ),
-    path(
-        'menu/',
-        views.menu,
-        name='menu'
-    ),
-    path(
-        'bookings/<int:booking_id>/',
-        views.booking_detail,
-        name='booking_detail'
-    ),
-    path(
-        'edit_booking/<int:booking_id>/',
-        views.edit_booking,
-        name='edit_booking'
-    ),
-    path(
-        'delete_booking/<int:booking_id>/',
-        views.delete_booking,
-        name='delete_booking'
-    ),
-    path(
-        'my_bookings/',
-        views.my_bookings,
-        name='my_bookings'
-    ),
+    path('reservations', views.Reservations.as_view(), name='reservations'),
+    path('confirmed', views.Confirmed.as_view(), name='confirmed'),
+    path('booking_list', views.BookingList.as_view(), name='booking_list'),
+    path('edit_booking/<int:pk>',
+         views.EditBooking.as_view(), name='edit_booking'),
+    path('cancel_booking/<int:pk>',
+         views.cancel_booking, name='cancel_booking'),
 ]
