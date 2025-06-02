@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import time
 
-time = models.TimeField(default=time(12, 0))
 
 # Create your models here.
-
+class Booking(models.Model):
+    ...
+    time = models.TimeField(default=time(12, 0))
 
 class MenuItem(models.Model):
     """

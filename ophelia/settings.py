@@ -18,6 +18,7 @@ if os.path.isfile('env.py'):
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
