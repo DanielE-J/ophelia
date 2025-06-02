@@ -69,16 +69,16 @@ class Booking(models.Model):
         choices=time_slots,
         default='17:00'
         )
-    table = models.ForeignKey(
-        Table,
-        on_delete=models.CASCADE,
-        related_name="table_reserved",
-        null=True
-        )
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="user", null=True)
     name = models.CharField(
         max_length=50,
+        null=True
+        )
+    table = models.ForeignKey(
+        Table,
+        on_delete=models.CASCADE,
+        related_name="table_reserved",
         null=True
         )
     email = models.EmailField(
