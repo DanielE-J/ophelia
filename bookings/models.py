@@ -33,7 +33,11 @@ status_options = (
 
 
 # The table model for the database
+class Table(models.Model):
+    number = models.IntegerField()
 
+    def __str__(self):
+        return f"Table {self.number}"
 
 class Table(models.Model):
     """
