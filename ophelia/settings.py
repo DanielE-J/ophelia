@@ -188,3 +188,4 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/reservations' 
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+PHONENUMBER_DEFAULT_REGION = "SE" 
