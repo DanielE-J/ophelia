@@ -29,7 +29,6 @@
                             {{ booking.requested_time }}</p><br>
                         <p class="card-subtitle mb-2">Booking status: {{ booking.status }}.</p>
                         <p class="card-text">No. of Guests: {{ booking.guest_count }}.</p>
-                        <p class="card-text">Table: {{booking.table}}</p>
                         <form method="POST">
                             {% csrf_token %}
                             <button class="btn btn-danger" type="submit">YES</button>

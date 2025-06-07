@@ -105,6 +105,8 @@ TEMPLATES = [
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 WSGI_APPLICATION = 'ophelia.wsgi.application'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`

@@ -2,7 +2,6 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 3rd party:
 from django import forms
-from crispy_forms.helper import FormHelper
 from datetime import datetime
 from phonenumber_field.formfields import PhoneNumberField
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -17,7 +16,7 @@ class BookingForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
+    
 
     requested_date = forms.DateField(
         widget=forms.DateInput(
@@ -33,6 +32,5 @@ class BookingForm(forms.ModelForm):
             'phone',
             'email',
             'guest_count',
-            'table',
             'requested_date',
         )
