@@ -22,7 +22,6 @@ time_slots = (
     ('23:00', '23:00'),
 )
 
-
 # Status options inspired by the JustEat status' when ordering
 status_options = (
     ('Awaiting confirmation', 'Awaiting Confirmation'),
@@ -31,14 +30,7 @@ status_options = (
     ('Booking Expired', 'Booking Expired'),
 )
 
-
 # The table model for the database
-class Table(models.Model):
-    number = models.IntegerField()
-
-    def __str__(self):
-        return f"Table {self.number}"
-
 class Table(models.Model):
     """
     a class for the Table model
@@ -48,7 +40,7 @@ class Table(models.Model):
         max_length=50,
         default='New Table',
         unique=True
-        )
+    )
     max_seats = models.PositiveIntegerField(default=2)
 
     class Meta:
@@ -57,10 +49,7 @@ class Table(models.Model):
     def __str__(self):
         return self.table_name
 
-
 # The booking model for the database
-
-
 class Booking(models.Model):
     """
     a class for the Booking model
@@ -72,29 +61,29 @@ class Booking(models.Model):
         max_length=25,
         choices=time_slots,
         default='17:00'
-        )
+    )
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="user", null=True)
     name = models.CharField(
         max_length=50,
         null=True
-        )
+    )
     table = models.ForeignKey(
         Table,
         on_delete=models.CASCADE,
         related_name="table_reserved",
         null=True
-        )
+    )
     email = models.EmailField(
         max_length=254,
         default=""
-        )
+    )
     phone = PhoneNumberField(null=True)
     status = models.CharField(
         max_length=25,
         choices=status_options,
         default='awaiting confirmation'
-        )
+    )
     seats = (
         (1, "1 Guest"),
         (2, "2 Guests"),
@@ -102,7 +91,7 @@ class Booking(models.Model):
         (4, "4 Guests"),
         (5, "5 Guests"),
         (6, "6 Guests"),
-        )
+    )
     guest_count = models.IntegerField(choices=seats, default=2)
 
     class Meta:
