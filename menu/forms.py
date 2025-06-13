@@ -3,7 +3,9 @@ from .models import MenuItem
 
 
 class MyForm(forms.Form):
-    my_field = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    my_field = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}))
+
 
 class MenuForm(forms.ModelForm):
     """
