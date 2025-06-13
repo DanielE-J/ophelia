@@ -310,3 +310,25 @@ about-text {
       font-size: 2rem;
   }
 }
+/* Container for the sidebar menu */
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  right: 0; /* Move it to the right side */
+  width: 250px;
+  height: 100%;
+  background-color: #000; /* or your menu background */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left inside the sidebar */
+  z-index: 1000;
+}
+
+/* Optional: adjust text alignment */
+.sidebar-menu a {
+  color: white;
+  text-decoration: none;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
