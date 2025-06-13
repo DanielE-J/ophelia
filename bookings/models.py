@@ -30,6 +30,7 @@ status_options = (
     ('Booking Expired', 'Booking Expired'),
 )
 
+
 # The table model for the database
 class Table(models.Model):
     """
@@ -48,6 +49,7 @@ class Table(models.Model):
 
     def __str__(self):
         return self.table_name
+
 
 # The booking model for the database
 class Booking(models.Model):
