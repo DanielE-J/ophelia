@@ -5,58 +5,50 @@
   box-sizing: border-box;
 }
 
-/* CSS varieables */
+/* CSS variables */
 :root {
   --primary-font: 'Alfa Slab One', serif;
-  --secondary-font: 'Chivo', serif;
+  --secondary-font: 'Chivo', sans-serif;
   --nav-color: transparent;
   --text-color: white;
   --background-color: rgb(0, 0, 0);
   --text-hover-color: #0e4b20;
   --button-bg-color: transparent;
   --button-text-color: #fff;
+  --button-hover-color: #ccc;
 }
 
-.contact-info a {
+/* Contact Info */
+.contact-info a,
+.contact-link {
   color: white;
   text-decoration: none;
 }
 
-.contact-info a:hover {
+.contact-info a:hover,
+.contact-link:hover {
   color: #ccc;
 }
-
-.btn-signup {
-  background-color: white !important;
-  color: black !important;
-  border: 1px solid black; /* Optional, for contrast */
-  cursor: pointer;
-  opacity: 1; /* Ensure it's not semi-transparent */
-}
-
 
 /* Global styles */
 body {
   background-color: var(--background-color);
   color: var(--text-color);
+  font-family: var(--secondary-font);
 }
 
-
-/* Nevigation bar */
+/* Navigation bar */
 .banner-img {
-  width: 100%;        
-  height: auto;       
-  display: block;    
-  border-radius: 8px; 
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
 }
 
 .logo {
-  padding-left: 0;          
-  margin-left: 0;  
   padding-left: 10px;
   max-width: 90px;
   background: transparent;
-  
 }
 
 .navbar {
@@ -66,7 +58,7 @@ body {
 }
 
 .nav-item {
-  padding: 0 15px 0 15px;
+  padding: 0 15px;
 }
 
 .nav-link {
@@ -80,7 +72,7 @@ body {
   font-size: 1.4rem;
   color: var(--text-color);
   text-decoration: underline;
-}  
+}
 
 .navbar-toggler-icon {
   color: var(--text-color);
@@ -89,19 +81,35 @@ body {
 
 .btn-order {
   border: 1px solid var(--button-bg-color);
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px;
   font-size: 1.2rem;
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
   text-decoration: none;
   transition: 0.3s ease-in-out;
 }
+
 .btn-order:hover {
   background-color: var(--button-hover-color);
   border: 1px solid var(--button-hover-color);
   color: var(--button-text-color);
 }
 
+.btn-signup {
+  background-color: white !important;
+  color: black !important;
+  border: 1px solid black;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.btn-white {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+/* About Section */
 .about-container {
   display: flex;
   flex-direction: row;
@@ -111,7 +119,11 @@ body {
   padding: 2rem;
   background-color: black;
   color: white;
-  flex-wrap: wrap; /* Makes it responsive */
+  flex-wrap: wrap;
+}
+
+.about-image {
+  flex: 1 1 40%;
 }
 
 .about-image img {
@@ -121,97 +133,23 @@ body {
   height: auto;
 }
 
-.about-image {
-  flex: 1 1 40%;
-}
-
-.btn-white {
-  background-color: white;
-  color: black;
-  border: 1px solid #ccc; /* Optional: visible border */
-}
-
 .about-content {
   flex: 1 1 50%;
   max-width: 600px;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .about-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-image,
-  .about-content {
-    flex: 1 1 100%;
-  }
-}
-
-
-/* Block Content */
+/* Typography */
 .main-text {
   font-family: var(--primary-font);
+  color: var(--text-color);
 }
 
 .sub-text {
   font-family: var(--secondary-font);
-}
-
-.main-text, .sub-text {
   color: var(--text-color);
 }
 
-
 /* Footer */
-#id_login, #id_password,
-#id_email, #id_username,
-#id_password1, #id_password2 {  
-  
-    border: 1px solid var(--text-color);
-    color: var(--text-color);
-    background: none;
-    width: 100%;
-}
-
-::placeholder {
-    color: var(--text-color);
-    opacity: 0.5;
-}
-
-/* Target the card */
-.card {
-    background-color: #000 !important;  /* Force black background */
-    color: #fff !important;             /* Force white text */
-    border: none;
-}
-
-/* Make h2 text white */
-.card h2 {
-    color: #fff !important;
-}
-
-/* Make links white and remove underline */
-.card a {
-    color: #fff !important;
-    text-decoration: none;
-}
-
-/* Optional: subtle hover effect */
-.card a:hover {
-    color: #ccc !important;
-}
-
-.contact-link {
-  color: white;
-  text-decoration: none;
-}
-
-.contact-link:hover {
-  color: #ccc;
-}
-
 #footer {
   background-color: var(--nav-color);
 }
@@ -224,19 +162,10 @@ body {
   font-size: 1rem;
 }
 
-header {
-    margin-bottom: 150px;
-}
-
-.card {
-    background-color: rgb(0, 0, 0, 0.2);
-    padding: 20px;
-}
 .social-links a {
   color: white;
   font-size: 1.8rem;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 0 10px;
   text-decoration: none;
 }
 
@@ -244,83 +173,122 @@ header {
   color: var(--text-hover-color);
 }
 
-about-text {
+/* Auth Forms */
+#id_login, #id_password,
+#id_email, #id_username,
+#id_password1, #id_password2 {
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  background: none;
+  width: 100%;
+}
+
+::placeholder {
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+/* Card Component */
+.card {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: #fff !important;
+  border: none;
+  padding: 20px;
+}
+
+.card h2 {
+  color: #fff !important;
+}
+
+.card a {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.card a:hover {
+  color: #ccc !important;
+}
+
+/* About text padding + size */
+.about-text {
   padding-top: 30px;
   padding-bottom: 50px;
-}
-
-.about-text {
   margin-top: 186px;
-  font-size: 0.6rem;
-}
-
-
-.about-text {
   font-size: 0.8rem;
-    }
+}
 
-
-/* For screen size (>=1200px) */
+/* Responsive: Larger screens */
 @media screen and (min-width: 1200px) {
-    .about-text {
-        font-size: 1rem;
-    }
-}
-/* Media Queries */
-
-
-/* For screen size (>768px) */
-@media screen and (min-width: 768px) {
-  .social {
-     text-align: center;
-  }
-}
-
-/* For screen size (<=768px) */
-@media screen and (max-width: 768px) {
-  .contact-info, .social {
-      text-align: center;
-  }
-}
-
-
-@media screen and (max-width: 1318px) {
-  .nav-link {
-      font-size: 0.9rem;
-  }
-  .nav-item {
-      padding: 0px 5px;
-  }
-
-  .btn-order {
-      font-size: 0.8rem;
+  .about-text {
+    font-size: 1rem;
   }
 }
 
 @media screen and (min-width: 1319px) {
   .footer-title {
-      font-size: 1.3rem;
+    font-size: 1.3rem;
   }
-  
+
   .footer-body {
-      font-size: 1.2rem;
+    font-size: 1.2rem;
   }
 
   .social-links a {
-      font-size: 2rem;
+    font-size: 2rem;
   }
 }
 
-@media (max-width: 768px) {
+/* Responsive: Mid-size screens */
+@media screen and (min-width: 768px) {
+  .social {
+    text-align: center;
+  }
+}
+
+/* Responsive: Small screens */
+@media screen and (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image,
+  .about-content {
+    flex: 1 1 100%;
+  }
+
+  .contact-info,
+  .social {
+    text-align: center;
+  }
+
   .logo {
-    position: relative;   /* or keep absolute but adjust */
-    width: 100px;         /* smaller logo for phones */
+    position: relative;
+    width: 100px;
     margin: 10px auto;
     display: block;
     z-index: 1;
   }
 
   .mobile-nav {
-    margin-top: 120px; /* Add spacing so nav items aren't behind the logo */
+    margin-top: 120px;
   }
+}
+
+@media screen and (max-width: 1318px) {
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .nav-item {
+    padding: 0 5px;
+  }
+
+  .btn-order {
+    font-size: 0.8rem;
+  }
+}
+
+header {
+  margin-bottom: 150px;
 }
