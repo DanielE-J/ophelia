@@ -4,11 +4,14 @@ from django.contrib.auth.decorators import login_required
 from .models import MenuItem, MenuList
 from .forms import MenuForm
 
+
 def drinks_view(request):
     return render(request, 'menu/drinks.html')
 
+
 def food_view(request):
     return render(request, 'menu/food.html')
+
 
 def all_menus(request):
     """
