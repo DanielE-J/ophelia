@@ -24,7 +24,6 @@
 
     <div>
       <strong>{% trans "Menu:" %}</strong>
-      <ul>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">{% trans "Change Email" %}</a></li>
         <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
@@ -32,7 +31,6 @@
         <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
         <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
         {% endif %}
-      </ul>
     </div>
     {% block content %}
     {% endblock content %}

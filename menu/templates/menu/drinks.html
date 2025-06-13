@@ -19,14 +19,6 @@
                 <img src="{% static 'images/wines.jpg' %}" alt="Wines" class="img-fluid rounded float-start me-3 mb-3">
                 <img src="{% static 'images/beer.jpg' %}" alt="Beer" class="img-fluid rounded float-start me-3 mb-3">
             </div>
-
-            {% for drink in drink_list %}
-                {% if drink.drink_type == 0 and drink.available == 1 %}
-                    <br><h3>{{ drink.drink_name }}</h3>
-                    {{ drink.description | safe }} €{{ drink.price }}
-                    <br>
-                {% endif %}
-            {% endfor %}
         </div>
     </div>
 
@@ -37,14 +29,6 @@
             <div class="text-center mb-4">
                 <img src="{% static 'images/cocktail.jpg' %}" alt="Cocktail" class="img-fluid rounded float-start">
             </div>
-
-            {% for drink in drink_list %}
-                {% if drink.drink_type == 2 and drink.available == 1 %}
-                    <br><h3>{{ drink.drink_name }}</h3>
-                    {{ drink.description | safe }} €{{ drink.price }}
-                    <br>
-                {% endif %}
-            {% endfor %}
         </div>
     </div>
 
@@ -55,14 +39,6 @@
             <div class="text-center mb-4">
                 <img src="{% static 'images/spirits.jpg' %}" alt="Spirits" class="img-fluid rounded float-start">
             </div>
-
-            {% for drink in drink_list %}
-                {% if drink.drink_type == 1 and drink.available == 1 %}
-                    <br><h3>{{ drink.drink_name }}</h3>
-                    {{ drink.description | safe }} €{{ drink.price }}
-                    <br>
-                {% endif %}
-            {% endfor %}
         </div>
     </div>
 </div>
