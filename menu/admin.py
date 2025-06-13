@@ -39,3 +39,4 @@ class MenuListAdmin(admin.ModelAdmin):
         view.
     """
     list_display = ('name', )
+    
