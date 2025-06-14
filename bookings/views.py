@@ -15,7 +15,7 @@ from .models import Booking
 from .forms import BookingForm
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
+MAX_BOOKINGS_PER_SLOT = 10
 # This will get the user information if they are logged in
 
 def get_user_instance(request):
@@ -159,3 +159,30 @@ def cancel_booking(request, pk):
 
     return render(
         request, 'bookings/cancel_booking.html', {'booking': booking})
+
+def make_booking(request):
+    if request.method == 'POST':
+        # Get data from form
+        date = request.POST.get('requested_date')
+        time = request.POST.get('requested_time')
+        # ... other fields
+
+        existing_bookings = Booking.objects.filter(
+            requested_date=date,
+            requested_time=time
+        ).count()
+
+        if existing_bookings >= MAX_BOOKINGS_PER_SLOT:
+            messages.error(request, "That time slot is fully booked. Please choose another.")
+            return redirect('booking_page')  # Replace with your form page name
+
+        # Otherwise, save the booking
+        Booking.objects.create(
+            requested_date=date,
+            requested_time=time,
+            # ... other fields
+        )
+        messages.success(request, "Booking confirmed!")
+        return redirect('booking_confirmation')
+
+    return render(request, 'booking/form.html')
