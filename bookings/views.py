@@ -16,124 +16,101 @@ from .forms import BookingForm
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MAX_BOOKINGS_PER_SLOT = 10
-# This will get the user information if they are logged in
 
 def get_user_instance(request):
     """
-    retrieves user details if logged in
+    Retrieves user details if logged in
     """
-
     user_email = request.user.email
     user = User.objects.filter(email=user_email).first()
     return user
 
 
-# Display the booking form and auto fill users email,
-# if user is did not provide email it will stay empty
-
-
 class Reservations(View):
     """
-    This view displays the booking form if the user
-    is registered and inserts the users email into the
-    email field
+    Displays the booking form and handles new bookings.
     """
     template_name = 'bookings/reservations.html'
     success_message = 'Booking has been made.'
 
     def get(self, request, *args, **kwargs):
-        """
-        Retrieves users email and inputs into email input
-        """
         if request.user.is_authenticated:
             email = request.user.email
             booking_form = BookingForm(initial={'email': email})
         else:
             booking_form = BookingForm()
-        return render(request, 'bookings/reservations.html',
-                      {'booking_form': booking_form})
+        return render(request, self.template_name, {'booking_form': booking_form})
 
     def post(self, request):
-        """
-        Checks that the provided info is valid format
-        and then posts to database
-        """
         booking_form = BookingForm(data=request.POST)
 
         if booking_form.is_valid():
             booking = booking_form.save(commit=False)
+
+            # Check time slot capacity
+            date = booking.requested_date
+            time = booking.requested_time
+
+            existing_bookings = Booking.objects.filter(
+                requested_date=date,
+                requested_time=time
+            ).count()
+
+            if existing_bookings >= MAX_BOOKINGS_PER_SLOT:
+                messages.error(request, "That time slot is fully booked. Please choose another.")
+                return render(request, self.template_name, {'booking_form': booking_form})
+
             booking.user = request.user
             booking.save()
-            messages.success(
-                request, "Booking succesful, awaiting confirmation")
+            messages.success(request, "Booking successful, awaiting confirmation.")
             return render(request, 'bookings/confirmed.html')
 
-        return render(request, 'bookings/reservations.html',
-                      {'booking_form': booking_form})
-
-
-# Dispays the confirmation page upon a succesful booking
+        return render(request, self.template_name, {'booking_form': booking_form})
 
 
 class Confirmed(generic.DetailView):
     """
-    This view will display confirmation on a successful booking
+    Displays confirmation page for a successful booking
     """
     template_name = 'bookings/confirmed.html'
 
     def get(self, request):
-        return render(request, 'bookings/confirmed.html')
-
-
-# Display all the bookings the user has active,
-# bookings older than today will be expired and the
-# user will not be able to edit or cancel them once
-# expired
+        return render(request, self.template_name)
 
 
 class BookingList(generic.ListView):
     """
-    This view will display all the bookings
-    a particular user has made
+    Lists current user's bookings
     """
     model = Booking
-    queryset = Booking.objects.filter().order_by('-created_date')
-    template_name = 'booking_list.html'
-    paginated_by = 4
+    template_name = 'bookings/booking_list.html'
+    paginate_by = 4
 
     def get(self, request, *args, **kwargs):
+        today = datetime.date.today()
+        bookings = Booking.objects.filter(user=request.user).order_by('-created_date')
 
-        booking = Booking.objects.all()
-        paginator = Paginator(Booking.objects.filter(user=request.user), 4)
+        for booking in bookings:
+            if booking.requested_date < today:
+                booking.status = 'Booking Expired'
+
+        paginator = Paginator(bookings, self.paginate_by)
         page = request.GET.get('page')
         booking_page = paginator.get_page(page)
-        today = datetime.datetime.now().date()
-
-        for date in booking:
-            if date.requested_date < today:
-                date.status = 'Booking Expired'
 
         if request.user.is_authenticated:
-            bookings = Booking.objects.filter(user=request.user)
             return render(
                 request,
-                'bookings/booking_list.html',
-                {
-                    'booking': booking,
-                    'bookings': bookings,
-                    'booking_page': booking_page})
+                self.template_name,
+                {'booking_page': booking_page, 'bookings': bookings}
+            )
         else:
-            return redirect('accounts/login.html')
-
-
-# Displays the edit booking page and form so the user
-# can then change any detail of the booking and update it
+            return redirect('accounts/login')
 
 
 class EditBooking(SuccessMessageMixin, UpdateView):
     """
-    This view will display the booking by it's primary key
-    so the user can then edit it
+    Allows user to edit a booking
     """
     model = Booking
     form_class = BookingForm
@@ -144,11 +121,9 @@ class EditBooking(SuccessMessageMixin, UpdateView):
         return reverse('booking_list')
 
 
-# Deletes the selected booking the user wishes to cancel
-
 def cancel_booking(request, pk):
     """
-    Deletes the booking identified by it's primary key by the user
+    Allows user to cancel a booking
     """
     booking = Booking.objects.get(pk=pk)
 
@@ -157,32 +132,4 @@ def cancel_booking(request, pk):
         messages.success(request, "Booking cancelled")
         return redirect('booking_list')
 
-    return render(
-        request, 'bookings/cancel_booking.html', {'booking': booking})
-
-def make_booking(request):
-    if request.method == 'POST':
-        # Get data from form
-        date = request.POST.get('requested_date')
-        time = request.POST.get('requested_time')
-        # ... other fields
-
-        existing_bookings = Booking.objects.filter(
-            requested_date=date,
-            requested_time=time
-        ).count()
-
-        if existing_bookings >= MAX_BOOKINGS_PER_SLOT:
-            messages.error(request, "That time slot is fully booked. Please choose another.")
-            return redirect('booking_page')  # Replace with your form page name
-
-        # Otherwise, save the booking
-        Booking.objects.create(
-            requested_date=date,
-            requested_time=time,
-            # ... other fields
-        )
-        messages.success(request, "Booking confirmed!")
-        return redirect('booking_confirmation')
-
-    return render(request, 'booking/form.html')
+    return render(request, 'bookings/cancel_booking.html', {'booking': booking})
