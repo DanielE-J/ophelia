@@ -1,50 +1,72 @@
+# Imports
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 3rd party:
 from django.db import models
-from cloudinary.models import CloudinaryField
+# Internal
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Food and Drinks type so all food and drinks can be categorised
+FOOD_TYPE = ((0, 'Starters'), (1, 'Mains'), (2, 'Desserts'), (3, 'New'))
+DRINK_TYPE = ((0, 'Wines'), (1, 'Beers'), (2, 'Cocktails'), (3, 'New'))
 
 
-class MenuList(models.Model):
+# Model for Food items
+
+
+class FoodItem(models.Model):
     """
-    Represents a category or list of menu items.
-
-    Attributes:
-        name (str): The name of the menu list.
+    a class for the food item model, contains
+    starters, mains and dessert foods
     """
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-
-class MenuItem(models.Model):
-    """
-    Represents an individual menu item.
-
-    Attributes:
-        menu_list (ForeignKey): A foreign key to the MenuList model,
-            categorizing the menu item.
-        sku (str): Stock Keeping Unit, a unique identifier for the item.
-        name (str): The name of the menu item.
-        description (str): A detailed description of the menu item.
-        price (Decimal): The price of the menu item.
-        image (CloudinaryField): An image of the menu item, stored on
-        Cloudinary.
-        created_on (DateField): The date when the menu item was added.
-    """
-
-    menu_list = models.ForeignKey(
-        'MenuList', null=True, blank=True, on_delete=models.SET_NULL
+    food_id = models.AutoField(primary_key=True)
+    food_name = models.CharField(
+        max_length=50,
+        unique=True
         )
-    sku = models.CharField(max_length=200, null=True, blank=True)
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = CloudinaryField('image', default='placeholder')
-    created_on = models.DateField(auto_now_add=True)
+    description = models.CharField(
+        max_length=200,
+        unique=True
+        )
+    price = models.FloatField()
+    food_type = models.IntegerField(
+        choices=FOOD_TYPE,
+        default=3
+        )
+    available = models.BooleanField(default=False)
 
-    # Add a Meta class to define order of items
     class Meta:
-        ordering = ["-id"]
+        ordering = ['-food_type']
 
-    # Display class object as a string to improve readable for admin
     def __str__(self):
-        return self.name
+        return self.food_name
+
+
+# Model for Drink items
+
+
+class DrinkItem(models.Model):
+    """
+    a class for the drink item model, contains
+    wines, beers and cocktails
+    """
+    drink_id = models.AutoField(primary_key=True)
+    drink_name = models.CharField(
+        max_length=50,
+        unique=True
+        )
+    description = models.CharField(
+        max_length=200,
+        unique=True
+        )
+    price = models.FloatField()
+    drink_type = models.IntegerField(
+        choices=DRINK_TYPE,
+        default=3
+        )
+    available = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-available']
+
+    def __str__(self):
+        return self.drink_name
