@@ -5,6 +5,3 @@ os.environ.setdefault(
 
 os.environ.setdefault(
     "CLOUDINARY_URL", "cloudinary://696851595744299:pAvmTvCd0esMIMyLjnp-B_w0SZ8@dxuwydpym")
-
-
-DEBUG = "True"
