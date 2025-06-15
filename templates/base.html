@@ -5,7 +5,9 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
-
+{% load static %}
+<p>Resolved static URL: {{ STATIC_URL }}</p>
+<p>Full CSS URL: {% static 'css/style.css' %}</p>
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -166,4 +168,3 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/32f8251277.js" crossorigin="anonymous"></script>
   </body>
-  
