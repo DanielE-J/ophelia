@@ -19,7 +19,7 @@
                         <!-- Display if user is not logged in -->
                         {% if not user.is_authenticated %}
                         <h2>Login required</h2>
-                        <p>Please login to edit bookings</p>
+                        <p>Please login to edit your bookings</p>
                        <a class="btn btn-success" href="{% url 'account_login' %}">Go to Login Page</a>
                         {% else %}
                         <!-- Display form if user is logged in-->
