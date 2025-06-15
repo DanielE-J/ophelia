@@ -18,7 +18,7 @@
   <div class="row bg-darker mt-5 rounded booking-card">
     <div class="col-md-4 offset-md-2 p-3 mb-5 mx-auto">
 
-      <h2>{% trans "Register" %}</h2>
+      <h2>{% trans "signup" %}</h2>
 
       <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">login</a>.{% endblocktrans %}
       </p>
@@ -29,7 +29,7 @@
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="btn btn-success" type="submit">{% trans "Register" %} &raquo;</button>
+        <button class="btn btn-success" type="submit">{% trans "signup" %} &raquo;</button>
       </form>
     </div>
   </div>
